@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Vẻ đẹp của tiếng nói – Những tiếng nói tạo nên thay đổi. Dự án học tập của học sinh.">
+<title>Vẻ đẹp của tiếng nói | Voice Beauty Pageant</title>
+<!-- Google Fonts & FontAwesome Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --gold: #d4af37;
+  --gold-light: #f3e5ab;
+  --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  --purple-dark: #0f0a1c;
+  --purple-card: #18112b;
+  --purple-accent: #2a1b4e;
+  --text-main: #f8f9fa;
+  --text-muted: #a0aec0;
+  --white: #ffffff;
+  --glass-bg: rgba(24, 17, 43, 0.75);
+  --glass-border: rgba(212, 175, 55, 0.25);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--purple-dark);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+a { color: inherit; }
+h1, h2, h3, .brand, .kicker, .quote p { font-family: 'Cinzel', serif; }
+
+.wrap { width: min(1180px, calc(100% - 40px)); margin: auto; }
+
+/* Dynamic Background Glows */
+body::before {
+  content: ""; position: fixed; top: -10%; left: -10%; width: 50vw; height: 50vw;
+  background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none; z-index: -1;
+}
+
+/* Header & Nav */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15, 10, 28, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.brand { font-weight: 800; letter-spacing: .08em; font-size: 1.1rem; color: #fff; text-decoration: none; }
+.brand span { display: block; font-weight: 600; letter-spacing: .16em; color: var(--gold); font-size: .7rem; }
+nav { display: flex; gap: 28px; align-items: center; }
+nav a { text-decoration: none; font-size: .9rem; color: var(--text-muted); font-weight: 500; transition: all .3s; }
+nav a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.5); }
+.menu { display: none; background: transparent; border: 1px solid var(--gold); border-radius: 8px; padding: 8px 12px; color: var(--gold); cursor: pointer; }
+
+/* Crown Badge */
+.crown-icon { color: var(--gold); margin-right: 6px; }
+
+/* Hero Section */
+.hero {
+  padding: 100px 0 90px;
+  background: radial-gradient(circle at 80% 20%, rgba(186, 133, 40, 0.15) 0%, rgba(15, 10, 28, 0) 60%);
+  position: relative;
+}
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(212,175,55,0.1); border: 1px solid var(--glass-border);
+  color: var(--gold); font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  font-size: .75rem; padding: 6px 16px; border-radius: 30px; margin-bottom: 15px;
+}
+h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.1; margin: 15px 0; color: var(--white); }
+h1 em { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: normal; }
+.lead { color: var(--text-muted); font-size: 1.1rem; max-width: 580px; }
+.actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  text-decoration: none; border-radius: 50px; padding: 14px 28px; font-weight: 700;
+  font-size: .9rem; transition: all .3s ease; cursor: pointer;
+}
+.btn.primary {
+  background: var(--gold-gradient); color: var(--purple-dark);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3); border: none;
+}
+.btn.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5); }
+.btn.secondary { color: var(--gold); border: 1px solid var(--gold); background: transparent; }
+.btn.secondary:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-2px); }
+
+/* Hero Image Banner Frame */
+.hero-img-wrapper { position: relative; }
+.hero-img-card {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  border: 2px solid var(--gold); box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+.hero-img-card img { width: 100%; height: 420px; object-fit: cover; display: block; filter: brightness(0.9); }
+.hero-badge {
+  position: absolute; bottom: -20px; right: -20px; background: var(--purple-card);
+  border: 1px solid var(--gold); padding: 16px; border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 12px;
+}
+.hero-badge i { font-size: 2rem; color: var(--gold); }
+
+/* Section Styling */
+section { padding: 90px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 45px; }
+.kicker { font-size: .75rem; letter-spacing: .2em; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; margin: 8px 0; line-height: 1.2; color: var(--white); }
+.section-head p { max-width: 440px; color: var(--text-muted); margin: 0; }
+
+/* Section 1: About / Philosophy */
+.intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.quote-card {
+  background: var(--purple-card); border: 1px solid var(--glass-border); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; position: relative;
+}
+.quote-img { height: 200px; width: 100%; object-fit: cover; filter: brightness(0.7); }
+.quote-content { padding: 30px; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+.quote p { font-size: 1.35rem; line-height: 1.4; color: var(--gold-light); font-style: italic; margin: 0 0 15px; }
+.quote small { color: var(--gold); letter-spacing: .15em; font-weight: 700; }
+
+.principles { display: grid; grid-template-rows: repeat(3, 1fr); gap: 15px; }
+.principle {
+  background: var(--purple-card); border: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 24px; border-radius: var(--radius); display: flex; align-items: center; gap: 20px;
+  transition: transform .3s;
+}
+.principle:hover { border-color: var(--gold); transform: translateX(5px); }
+.principle b {
+  font-size: 1.6rem; color: var(--gold); background: rgba(212,175,55,0.1);
+  width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0;
+}
+.principle p { color: var(--text-muted); font-size: .95rem; margin: 0; }
+
+/* Section 2: Contest Teams / Pageant Categories */
+.teams-section { background: rgba(24, 17, 43, 0.4); }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.team-card {
+  background: var(--purple-card); border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--glass-border); display: flex; flex-direction: column;
+  transition: all .3s ease; position: relative;
+}
+.team-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); border-color: var(--gold); }
+.team-img { position: relative; height: 210px; overflow: hidden; }
+.team-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.team-card:hover .team-img img { transform: scale(1.05); }
+.team-no {
+  position: absolute; top: 15px; left: 15px; background: rgba(15,10,28,0.85);
+  border: 1px solid var(--gold); color: var(--gold); font-size: .7rem; font-weight: 800;
+  padding: 4px 12px; border-radius: 20px; letter-spacing: .1em;
+}
+.team-top { padding: 20px 24px 10px; }
+.team-top h3 { font-size: 1.5rem; margin: 0 0 8px; color: var(--white); }
+.team-top .question { color: var(--gold-light); font-weight: 600; font-size: .95rem; line-height: 1.4; }
+.team-body { padding: 0 24px 24px; display: flex; flex-direction: column; flex: 1; }
+.team-body p { color: var(--text-muted); font-size: .9rem; }
+.tags { margin: 10px 0 15px; }
+.tag {
+  display: inline-block; background: rgba(212,175,55,0.1); color: var(--gold-light);
+  font-size: .72rem; font-weight: 600; padding: 4px 10px; border-radius: 12px; margin: 3px 4px 3px 0;
+  border: 1px solid rgba(212,175,55,0.2);
+}
+.team-body a { margin-top: auto; color: var(--gold); font-weight: 700; text-decoration: none; font-size: .9rem; display: inline-flex; align-items: center; gap: 6px; }
+.team-body a:hover { text-shadow: 0 0 8px rgba(212,175,55,0.5); }
+
+/* Section 3: Project Roadmap */
+.project-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
+.project-note {
+  background: var(--purple-card); padding: 32px; border-radius: var(--radius);
+  border: 1px solid var(--glass-border); position: relative;
+}
+.project-note-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+.project-note h3 { font-size: 1.4rem; color: var(--gold); margin: 0 0 12px; }
+.project-note p { color: var(--text-muted); margin: 0; font-size: .95rem; }
+
+.steps { counter-reset: step; }
+.step { position: relative; padding: 0 0 28px 60px; border-left: 2px solid rgba(212,175,55,0.2); margin-left: 20px; }
+.step:last-child { border-left-color: transparent; }
+.step::before {
+  counter-increment: step; content: "0" counter(step); position: absolute; left: -21px; top: 0;
+  width: 40px; height: 40px; border-radius: 50%; background: var(--gold-gradient);
+  color: var(--purple-dark); display: grid; place-items: center; font-size: .85rem; font-weight: 800;
+  box-shadow: 0 0 12px rgba(212,175,55,0.4);
+}
+.step h3 { margin: 0 0 6px; font-size: 1.1rem; color: var(--white); }
+.step p { margin: 0; color: var(--text-muted); font-size: .9rem; }
+
+/* Section 4: Showcase Gallery */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.gallery-card {
+  background: var(--purple-card); border-radius: var(--radius); border: 1px solid var(--glass-border);
+  overflow: hidden; transition: all .3s; display: flex; flex-direction: column;
+}
+.gallery-card:hover { transform: scale(1.02); border-color: var(--gold); }
+.gallery-img { height: 180px; width: 100%; object-fit: cover; }
+.gallery-content { padding: 20px; flex: 1; }
+.gallery-card .symbol { font-size: 1.8rem; color: var(--gold); font-weight: 800; }
+.gallery-card h3 { margin: 6px 0 10px; font-size: 1.1rem; color: var(--white); }
+.gallery-card p { color: var(--text-muted); font-size: .88rem; margin: 0; }
+
+/* Section 5: Submit / Call to Action */
+.submit-box {
+  background: linear-gradient(135deg, rgba(42, 27, 78, 0.9), rgba(24, 17, 43, 0.9));
+  padding: 45px; border-radius: var(--radius); border: 1px solid var(--gold);
+  display: flex; justify-content: space-between; align-items: center; gap: 30px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+.submit-box h2 { font-size: 2.2rem; }
+.submit-box p { color: var(--text-muted); max-width: 580px; }
+.note { font-size: .82rem; color: #8c9ba5; }
+
+/* Footer */
+footer { background: #08050e; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+footer .foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+footer small { color: var(--text-muted); }
+
+/* Responsive */
+@media(max-width: 880px) {
+  nav {
+    display: none; position: absolute; top: 80px; left: 0; right: 0;
+    background: var(--purple-dark); padding: 25px; border-bottom: 1px solid var(--glass-border);
+    flex-direction: column; align-items: flex-start; gap: 18px;
+  }
+  nav.open { display: flex; }
+  .menu { display: block; }
+  .hero-grid, .intro-grid, .project-grid { grid-template-columns: 1fr; }
+  .team-grid, .gallery-grid { grid-template-columns: 1fr; }
+  .section-head { flex-direction: column; align-items: flex-start; }
+  .submit-box { flex-direction: column; align-items: flex-start; padding: 30px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home"><i class="fa-solid fa-crown crown-icon"></i>YOUR VOICE MATTERS<span>VẺ ĐẸP CỦA TIẾNG NÓI</span></a>
+    <button class="menu" id="menuBtn" aria-label="Mở trình đơn"><i class="fa-solid fa-bars"></i></button>
+    <nav id="navLinks">
+      <a href="#about">Thông điệp</a>
+      <a href="#teams">Ba tiếng nói</a>
+      <a href="#project">Dự án</a>
+      <a href="#gallery">Lan tỏa</a>
+      <a href="#join">Tham gia</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><i class="fa-solid fa-award"></i> DỰ ÁN HỌC TẬP · NÓI VÀ NGHE · NGỮ VĂN 11</div>
+      <h1>Vẻ đẹp của <em>tiếng nói</em></h1>
+      <p class="lead">Những tiếng nói khác biệt cùng gặp nhau để nhìn nhận vấn đề, chia sẻ góc nhìn và khơi nguồn thay đổi tích cực trong cuộc sống.</p>
+      <div class="actions">
+        <a class="btn primary" href="#teams"><i class="fa-solid fa-microphone-lines"></i> Khám phá ba chủ đề</a>
+        <a class="btn secondary" href="#project">Tìm hiểu dự án</a>
+      </div>
+    </div>
+    <div class="hero-img-wrapper">
+      <div class="hero-img-card">
+        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80" alt="Sân khấu Tiếng nói">
+        <div class="hero-badge">
+          <i class="fa-solid fa-trophy"></i>
+          <div>
+            <strong style="display:block; color:var(--white);">Đấu Trường Tiếng Nói</strong>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Tôn vinh bản lĩnh & tư duy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">01 / TINH THẦN DỰ ÁN</div>
+        <h2>Một tiếng nói có thể<br>mở ra nhiều suy nghĩ.</h2>
+      </div>
+      <p>Chúng ta không chỉ học cách trình bày một quan điểm. Chúng ta học cách lắng nghe, kiểm chứng thông tin, tôn trọng khác biệt và biến điều mình tin tưởng thành hành động có trách nhiệm.</p>
+    </div>
+    <div class="intro-grid">
+      <div class="quote-card">
+        <img class="quote-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Lắng nghe và chia sẻ">
+        <div class="quote-content">
+          <div class="quote"><p>“Nói bằng lí lẽ. Lắng nghe bằng sự tôn trọng. Hành động bằng trách nhiệm.”</p></div>
+          <small><i class="fa-solid fa-star" style="margin-right:5px;"></i>YOUR VOICE MATTERS</small>
+        </div>
+      </div>
+      <div class="principles">
+        <div class="principle">
+          <b>01</b>
+          <p>Quan điểm rõ ràng, có chính kiến và biết đặt vấn đề.</p>
+        </div>
+        <div class="principle">
+          <b>02</b>
+          <p>Lí lẽ thuyết phục, dẫn chứng đáng tin cậy và được kiểm chứng.</p>
+        </div>
+        <div class="principle">
+          <b>03</b>
+          <p>Đối thoại văn minh, phản biện ý kiến chứ không công kích con người.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: TEAMS / TOPICS -->
+<section class="teams-section" id="teams">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">02 / BA TIẾNG NÓI</div>
+        <h2>Ba vấn đề – Ba góc nhìn</h2>
+      </div>
+      <p>Mỗi nhóm lựa chọn một vấn đề gần gũi với đời sống học sinh, phát triển quan điểm và đề xuất cách tạo nên thay đổi tích cực.</p>
+    </div>
+    <div class="team-grid">
+      <!-- EKIP 01 -->
+      <article class="team-card">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="Digital Generation">
+          <span class="team-no">EKIP 01</span>
+        </div>
+        <div class="team-top">
+          <h3>Digital Generation</h3>
+          <div class="question">Mạng xã hội: Kết nối con người hay tạo nên những khoảng cách?</div>
+        </div>
+        <div class="team-body">
+          <p>Từ một lượt chia sẻ, bình luận hay bức ảnh được đăng tải, chúng ta nhìn lại trách nhiệm của mỗi người trong không gian số.</p>
+          <div class="tags">
+            <span class="tag">Ứng xử số</span>
+            <span class="tag">Tin giả</span>
+            <span class="tag">Tôn trọng riêng tư</span>
+          </div>
+          <p><b>Gợi ý sản phẩm:</b> Bản tin học đường, infographic, podcast ngắn hoặc video tình huống.</p>
+          <a href="#join">Xem cách tham gia <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- EKIP 02 -->
+      <article class="team-card">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Equal Voices">
+          <span class="team-no">EKIP 02</span>
+        </div>
+        <div class="team-top">
+          <h3>Equal Voices</h3>
+          <div class="question">Bình đẳng giới: Có phải mọi định kiến giới đều bắt đầu từ những điều rất nhỏ?</div>
+        </div>
+        <div class="team-body">
+          <p>Từ những lời khen, lời chúc tưởng chừng vô tư, chúng ta nhận diện các khuôn mẫu giới và suy nghĩ về quyền được lựa chọn của mỗi người.</p>
+          <div class="tags">
+            <span class="tag">Định kiến giới</span>
+            <span class="tag">Tôn trọng lựa chọn</span>
+            <span class="tag">Cơ hội bình đẳng</span>
+          </div>
+          <p><b>Gợi ý sản phẩm:</b> Tiểu phẩm đối thoại, video ngắn, bộ thông điệp truyền thông.</p>
+          <a href="#join">Xem cách tham gia <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- EKIP 03 -->
+      <article class="team-card">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80" alt="Green Future">
+          <span class="team-no">EKIP 03</span>
+        </div>
+        <div class="team-top">
+          <h3>Green Future</h3>
+          <div class="question">Sống xanh: Trào lưu nhất thời hay trách nhiệm của thế hệ trẻ?</div>
+        </div>
+        <div class="team-body">
+          <p>Từ những thói quen hằng ngày, chúng ta cùng bàn về tiêu dùng có trách nhiệm và những hành động thiết thực vì môi trường.</p>
+          <div class="tags">
+            <span class="tag">Tiêu dùng bền vững</span>
+            <span class="tag">Giảm rác thải</span>
+            <span class="tag">Hành động xanh</span>
+          </div>
+          <p><b>Gợi ý sản phẩm:</b> Infographic, thử thách sống xanh, video hoặc nhật kí hành động.</p>
+          <a href="#join">Xem cách tham gia <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PROJECT -->
+<section id="project">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">03 / TỪ LỜI NÓI ĐẾN HÀNH ĐỘNG</div>
+        <h2>Tiếng nói không dừng<br>lại trên sân khấu.</h2>
+      </div>
+      <p>Sau phần trình bày và phản biện, mỗi ekip tiếp tục phát triển thông điệp thành một sản phẩm truyền thông có thể chia sẻ trong cộng đồng học đường.</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-note">
+        <img class="project-note-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Thực hiện dự án">
+        <h3>Vẻ đẹp của tiếng nói – Những tiếng nói tạo nên thay đổi</h3>
+        <p>Mục tiêu của dự án là đưa kiến thức và quan điểm đã học vào đời sống. Sản phẩm cần ngắn gọn, chính xác, dễ tiếp cận và khuyến khích một hành động tích cực cụ thể.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Thống nhất thông điệp</h3>
+          <p>Xác định điều nhóm muốn người xem suy nghĩ hoặc thay đổi sau khi tiếp nhận sản phẩm.</p>
+        </div>
+        <div class="step">
+          <h3>Lựa chọn hình thức</h3>
+          <p>Thiết kế infographic, video ngắn, bài viết, podcast hoặc bộ quy tắc hành động phù hợp với chủ đề.</p>
+        </div>
+        <div class="step">
+          <h3>Kiểm chứng và hoàn thiện</h3>
+          <p>Kiểm tra nguồn dẫn, tính chính xác, bản quyền hình ảnh/âm thanh và sự phù hợp của ngôn từ trước khi gửi giáo viên.</p>
+        </div>
+        <div class="step">
+          <h3>Chia sẻ và lan tỏa</h3>
+          <p>Công bố sản phẩm qua kênh được nhà trường/giáo viên cho phép; khuyến khích người xem thực hiện một hành động cụ thể.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">04 / GÓC LAN TỎA</div>
+        <h2>Mỗi hành động nhỏ,<br>một thay đổi có thật.</h2>
+      </div>
+      <p>Khu vực này dành để đăng tải sản phẩm sau khi được giáo viên kiểm duyệt. Nội dung bên dưới là định hướng để các nhóm phát triển.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <img class="gallery-img" src="https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?auto=format&fit=crop&w=600&q=80" alt="Think before you share">
+        <div class="gallery-content">
+          <div class="symbol">01</div>
+          <h3>Think before you share</h3>
+          <p>Kiểm chứng trước khi chia sẻ. Tôn trọng quyền riêng tư. Không tiếp tay cho bình luận gây tổn thương.</p>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Respect every choice">
+        <div class="gallery-content">
+          <div class="symbol">02</div>
+          <h3>Respect every choice</h3>
+          <p>Không áp đặt khuôn mẫu. Ghi nhận năng lực và cá tính. Chia sẻ trách nhiệm trong học tập và cuộc sống.</p>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <img class="gallery-img" src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=600&q=80" alt="Start small, live green">
+        <div class="gallery-content">
+          <div class="symbol">03</div>
+          <h3>Start small, live green</h3>
+          <p>Hạn chế đồ dùng một lần. Sử dụng tài nguyên hợp lí. Duy trì thói quen xanh mỗi ngày.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: SUBMIT -->
+<section id="join">
+  <div class="wrap">
+    <div class="submit-box">
+      <div>
+        <div class="kicker">05 / CÙNG GÓP TIẾNG NÓI</div>
+        <h2>Bạn muốn bắt đầu từ đâu?</h2>
+        <p>Hãy chọn một vấn đề bạn quan tâm, chia sẻ góc nhìn bằng lí lẽ và dẫn chứng đáng tin cậy, sau đó đề xuất một hành động vừa sức để cùng thực hiện.</p>
+        <p class="note">Đối với học sinh tham gia dự án: gửi sản phẩm cho giáo viên phụ trách theo hướng dẫn của lớp. Chỉ đăng tải hình ảnh, tên và thông tin cá nhân khi đã được cho phép.</p>
+      </div>
+      <a class="btn primary" href="mailto:giaovien@example.com?subject=San%20pham%20du%20an%20Your%20Voice%20Matters"><i class="fa-solid fa-paper-plane"></i> Gửi sản phẩm</a>
+    </div>
+    <p class="note" style="margin-top:16px;">Lưu ý cho giáo viên: thay địa chỉ email mẫu bằng địa chỉ nhận bài chính thức hoặc thay nút này bằng liên kết Google Form/Google Drive của lớp trước khi công bố.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <b style="color:var(--gold); font-family:'Cinzel', serif;"><i class="fa-solid fa-crown"></i> YOUR VOICE MATTERS</b><br>
+      <small>Vẻ đẹp của tiếng nói · Dự án học tập Ngữ văn 11</small>
+    </div>
+    <small>Speak with reason. Listen with respect. Act with responsibility.</small>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const nav = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+</body>
+</html>
